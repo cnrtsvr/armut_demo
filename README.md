@@ -2,6 +2,9 @@
 
 Demo App for Zeo Research
 
+Online demo can be found on: https://cnrtsvr.github.io/armut_demo/
+(Backend Server can be shut down. No promises.)
+
 ## Project setup
 ```
 yarn install

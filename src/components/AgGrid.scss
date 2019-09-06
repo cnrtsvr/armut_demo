@@ -1,0 +1,270 @@
+@import "~ag-grid-community/src/styles/ag-grid.scss";
+@import "~ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+@import "./commonVariables";
+
+$pagination-select-height: 36px;
+$pagination-select-width: 76px;
+
+$page-input-height: 36px;
+$page-input-width: 52px;
+
+$pagination-button-width: 36px;
+$pagination-button-height: 36px;
+
+
+.ag-grid-wrapper {
+  .cell-without-graph {
+    @include display-flex-creator(center, flex-start);
+    .cell-without-graph-value {
+      @include title-creator(14px, 20px, #666573);
+      margin-right: 16px;
+    }
+    .cell-without-graph-diff {
+      @include title-creator(14px, 20px, #666573);
+      &.positive {
+        color: #36D8AF;
+      }
+      &.negative {
+        color: #FF668C;
+      }
+    }
+  }
+
+  .normal-cell {
+    @include title-creator(14px, 20px, #666573);
+  }
+
+  .keyword-cell {
+    @include title-creator(14px, 20px, #2C2B33);
+  }
+
+  .page-cell {
+    width: 30px;
+    height: 30px;
+    .page-cell-page-wrapper {
+      @include border-creator(#BDBCCC, 25px);
+      @include display-flex-creator(center, center);
+      height: 100%;
+      .page-cell-page-text {
+        @include title-creator(14px, 20px, #666573);
+      }
+    }
+  }
+
+  .cell-with-graph {
+    @include display-flex-creator(center, center);
+    height: 100%;
+    .cell-with-graph-value {
+      margin-left: 8px;
+      @include title-creator(14px, 20px, #666573);
+      &.positive {
+        color: #36D8AF;
+      }
+      &.negative {
+        color: #FF668C;
+      }
+    }
+  }
+
+  .ag-grid-footer {
+    margin-top: 16px;
+    @include display-flex-creator(center, center);
+    &.with-info {
+      @include display-flex-creator(center, space-between);
+    }
+    .how-to-info, .case-study-info {
+      @include display-flex-creator(center, center);
+      .info-icon {
+        @include display-flex-creator(center, center);
+        @include create-lg-xl('padding', ( 'x': 2px ), ( 'x': 4px ));
+        @include create-lg-xl('margin', ( 'right': 5px ), ( 'right': 10px ));
+      }
+      .info-text {
+        @include display-flex-creator(center, center);
+        @include title-creator(14px, 20px, #666573);
+      }
+    }
+    .how-to-info {
+      @include create-lg-xl('margin', ( 'right': 13px ), ( 'right': 26px ));
+    }
+    .case-study-info {
+      white-space: nowrap;
+    }
+
+    .pagination-size-container {
+      @include display-flex-creator(center, center);
+      @include create-lg-xl('margin', ( 'right': 12px ), ( 'right': 24px ));
+      .pagination-size-text {
+        @include title-creator(14px, 18px, #666573, 500);
+        @include create-lg-xl('margin', ( 'right': 8px ), ( 'right': 16px ));
+      }
+      .pagination-size-select {
+        @include default-select-template(true, false, 14px, 20px, #2C2B33);
+        @include border-creator($input-border-color);
+        width: $pagination-select-width;
+        min-height: $pagination-select-height;
+        .v-input__control {
+          min-height: $pagination-select-height;
+          .v-input__slot {
+            min-height: $pagination-select-height;
+            box-shadow: none !important;
+          }
+        }
+      }
+    }
+    .pagination-wrapper {
+      @include display-flex-creator(center, center);
+      .pagination-button {
+        @include border-creator($input-border-color);
+        width: $pagination-button-width;
+        min-width: $pagination-button-width;
+        height: $pagination-button-height;
+        padding: 0;
+        @include create-lg-xl('margin', ( 'x' 4px ), ( 'x': 8px ));
+        background: #F8F7FC;
+        .v-btn__content {
+          i {
+            color: #666573;
+          }
+        }
+      }
+      .pagination-page-input {
+        @include border-creator($input-border-color);
+        min-width: $page-input-width;
+        max-width: $page-input-width;
+        min-height: $page-input-height;
+        .v-input__control {
+          min-height: $page-input-height;
+          .v-input__slot {
+            .v-text-field__slot {
+              input {
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+    .total-page-wrapper {
+      @include display-flex-creator(center, center);
+      @include create-lg-xl('margin', ( 'left': 4px ), ( 'left': 8px ));
+      @include create-lg-xl('padding', ( 'x': 4px ), ( 'x': 8px ));
+      .total-page-text {
+        @include title-creator(14px, 18px, #666573, 500);
+      }
+    }
+  }
+
+  .pagination-select {
+    width: 200px !important;
+    .v-input__slot {
+      border-radius: 10px;
+    }
+  }
+
+  .flex-center {
+    @include display-flex-creator(center, center);
+  }
+
+  .ag-grid-table {
+    @include border-creator($input-border-color);
+    min-height: 500px;
+    .ag-root {
+      border: none !important;
+    }
+    .ag-root-wrapper-body.ag-layout-normal {
+      height: unset !important;
+    }
+    .ag-header-viewport, .ag-pinned-left-header {
+      background-color: #F8F7FC;
+    }
+    .ag-header-cell {
+      .ag-cell-label-container {
+        .ag-header-cell-label {
+          .ag-header-cell-text {
+            @include title-creator(14px, 18px, #9E9CAD, 500);
+          }
+        }
+        .ag-header-icon.ag-filter-icon {
+          display: none;
+        }
+      }
+      border: none;
+      &:after {
+        all: unset;
+      }
+    }
+    .ag-header-group-cell {
+      border: none;
+    }
+    .ag-header-cell-resize {
+      outline-style: none;
+    }
+
+    .ag-cell {
+      @include display-flex-creator(center, flex-start);
+    }
+    // style select of column header filter
+    .ag-filter-select {
+      padding: 0.3rem;
+      background: transparent;
+      @include border-creator(rgba(0, 0, 0, .2), 5px);
+    }
+
+    // style input of column header filter input
+    .ag-filter-filter {
+      padding-bottom: 0 !important;
+      height: 25px !important;
+      margin: 10px 10px 14px 10px !important;
+    }
+
+    // remove extra padding of input in inline edit
+    .ag-input-text-wrapper {
+      input {
+        padding-bottom: 0 !important;
+      }
+    }
+
+    .ag-cell-inline-editing {
+      height: 62px !important;
+    }
+
+    .ag-cell-inline-editting,
+    .ag-popup-editor {
+      padding-bottom: 12px;
+    }
+
+    .ag-grid-table-actions-right {
+      @media screen and (max-width: 614px) {
+        flex-grow: 1;
+      }
+    }
+
+    .ag-grid-table-actions-left {
+      @media screen and (max-width: 614px) and (min-width: 443px) {
+        flex-grow: 1;
+        @include display-flex-creator(unset, flex-end);
+      }
+    }
+
+    .ag-horizontal-left-spacer, .ag-horizontal-right-spacer {
+      overflow-x: auto;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #dae1e7;
+      border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f8f8f8;
+      border-radius: 20px;
+    }
+  }
+}
+

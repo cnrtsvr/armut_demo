@@ -1,0 +1,167 @@
+$white: #FFFFFF;
+$font-family: inherit;
+$main-selected-bg-color: #6759FF;
+$element-height: 48px;
+
+$input-border-color: #E2E1EB;
+$input-text-color: #222222;
+$input-text-placeholder-color: #888888;
+$input-text-icon-color: #AAAAAA;
+
+@mixin create-lg-xl($type, $lg, $xl) {
+  @media (min-width: 1264px) {
+    @each $name, $value in $lg {
+      @if ($name == 'all' or $name == 'itself') {
+        #{$type}: $value;
+      }
+      @else if($name == 'x') {
+        #{$type}-#{'left'}: $value;
+        #{$type}-#{'right'}: $value;
+      }
+      @else if($name == 'y') {
+        #{$type}-#{'top'}: $value;
+        #{$type}-#{'bottom'}: $value;
+      }
+      @else {
+        #{$type}-#{$name}: $value;
+      }
+    }
+  }
+  @media (min-width: 1904px) {
+    @each $name, $value in $xl {
+      @if ($name == 'all' or $name == 'itself') {
+        #{$type}: $value;
+      }
+      @else if($name == 'x') {
+        #{$type}-#{'left'}: $value;
+        #{$type}-#{'right'}: $value;
+      }
+      @else if($name == 'y') {
+        #{$type}-#{'top'}: $value;
+        #{$type}-#{'bottom'}: $value;
+      }
+      @else {
+        #{$type}-#{$name}: $value;
+      }
+    }
+  }
+}
+
+@mixin main-bg-color-button {
+  @include title-creator(16px, 21px, $white, 500);
+  background: $main-selected-bg-color;
+  border-radius: 4px;
+  width: 188px;
+  height: $element-height;
+}
+
+@mixin wizard-step-icon {
+  width: 48px;
+  border-radius: 25px;
+  height: 48px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  @include display-flex-creator(center, center);
+  @include title-creator(22px, 29px, inherit, 500);
+}
+
+@mixin default-input-style($height: $element-height) {
+  min-height: $height;
+  //height: $height;
+  @include border-creator($input-border-color, 4px, true);
+  box-shadow: none !important;
+  .v-input__control {
+    min-height: $height !important;
+  }
+}
+
+@mixin button-creator($background-color: $main-selected-bg-color, $border-radius: 4px, $font-size: 16px, $line-height: 21px,
+    $font-weight: normal, $text-color: $white, $height: $element-height) {
+  @include title-creator($font-size, $line-height, $text-color, $font-weight);
+  background: $background-color;
+  @if($border-radius != unset) {
+    border-radius: $border-radius;
+  }
+  height: $height;
+}
+
+@mixin title-creator($font-size, $line-height, $color, $font-weight: normal, $font-style: normal) {
+  font-style: $font-style;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color !important;
+  font-family: $font-family;
+}
+
+@mixin display-flex-creator($align: unset, $justify: unset) {
+  display: flex;
+  @if $align != unset {
+    align-items: $align;
+  }
+  @if $justify != unset {
+    justify-content: $justify;
+  }
+}
+
+@mixin border-creator($color, $radius: 4px, $important: false) {
+  @if $important == false {
+    border: 1px solid $color;
+  } @else {
+    border: 1px solid $color !important;
+  }
+  box-sizing: border-box;
+  border-radius: $radius;
+}
+
+@mixin image-force-resize($size) {
+  max-width: $size;
+  min-width: $size;
+  max-height: $size;
+  min-height: $size;
+}
+
+@mixin input-icon-color($color) {
+  i {
+    color: $color !important;
+  }
+}
+
+@mixin default-select-template($appendIcon: true, $clearIcon: false, $font-size: 16px,
+  $line-height: 21px, $color: $input-text-color, $font-weight: normal,
+  $font-style: normal) {
+  margin-right: 8px;
+  .v-input__control {
+    min-height: 36px !important;
+    .v-input__slot {
+      .v-select__slot {
+        justify-content: center;
+        .v-select__selections {
+          padding: 0 !important;
+          @include title-creator($font-size, $line-height, $input-text-color, $font-weight, $font-style);
+          input::placeholder {
+            color: $input-text-placeholder-color;
+          }
+        }
+        @if($appendIcon == true or $clearIcon == true) {
+          .v-input__append-inner {
+            align-self: center;
+            display: flex;
+            margin: 0 !important;
+            .v-input__icon {
+              @if ($appendIcon == true) {
+                &.v-input__icon--append {
+                  @include input-icon-color($input-text-icon-color);
+                }
+              }
+              @if ($clearIcon == true) {
+                &.v-input__icon--clear {
+                  @include input-icon-color($main-selected-bg-color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
